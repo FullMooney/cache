@@ -21,17 +21,14 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 public class RedisConfig {
 
-    @Value("${spring.redis.url:localhost}")
+    @Value("${spring.redis.url}")
     private String host;
 
-    @Value("${spring.redis.port:6379}")
+    @Value("${spring.redis.port}")
     private int port;
 
-    @Value("${spring.redis.password}")
+    @Value("${spring.redis.password}") // 패스워드 설정시
     private String password;
-
-    @Value("${spring.redis.database:0}")
-    private int database;
 
     @Value("${lettuce.connect-timeout:500}")
     private int connectTimeout;
@@ -39,6 +36,10 @@ public class RedisConfig {
     @Value("${lettuce.command-timeout:500}")
     private int commandTimeout;
     
+    @Value("${spring.redis.database}")
+    private int database;
+
+
     @Bean
     RedisConnectionFactory redisConnectionFactory() {
 
@@ -47,7 +48,7 @@ public class RedisConfig {
             RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
             redisStandaloneConfiguration.setPort(port);
             redisStandaloneConfiguration.setHostName(host);
-	        redisStandaloneConfiguration.setPassword(password); // 패스워드 설정시
+	    redisStandaloneConfiguration.setPassword(password); // 패스워드 설정시
             redisStandaloneConfiguration.setDatabase(database);
 
             LettuceClientConfiguration clientConfiguration = LettuceClientConfiguration.builder()
@@ -86,7 +87,7 @@ public class RedisConfig {
 
             return redisTemplate;
         } catch(Exception e) {
-            log.error("redisTemplate Exception", e);
+            log.error("redisTemplate create Exception", e);
         }
 
         return null;

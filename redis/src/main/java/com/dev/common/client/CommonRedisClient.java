@@ -24,7 +24,6 @@ public class CommonRedisClient extends AbstractRedisClient {
     public void setValue(String key, Object value) {
 	try {
 	    valueOperations.set(key, value);
-		valueOperations.getOperations().expire(key, 1, TimeUnit.HOURS); // default 1시간 alive
 	} catch (Exception e) {
 	    log.error("CommonRedisClient.setValue Exception[{}]", e.getMessage());
 	    log.error("CommonRedisClient.setValue Exception[{}]", e.toString());
@@ -35,7 +34,7 @@ public class CommonRedisClient extends AbstractRedisClient {
     public void setValue(String key, Object value, int expireSeconds) {
 	try {
 	    valueOperations.set(key, value);
-	    valueOperations.getOperations().expire(key, expireSeconds, TimeUnit.SECONDS); // custom expired time of seconds
+	    valueOperations.getOperations().expire(key, expireSeconds, TimeUnit.SECONDS);
 	} catch (Exception e) {
 	    log.error("CommonRedisClient.setValue Exception[{}]", e.getMessage());
 	    log.error("CommonRedisClient.setValue Exception[{}]", e.toString());

@@ -1,4 +1,4 @@
-package com.dev.fullmooney.controller;
+package com.dev.log.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -12,13 +12,13 @@ abstract class AbstractRedisClient {
     protected final ValueOperations<String, Object> valueOperations;
 
     AbstractRedisClient(RedisTemplate<String, Object> redisTemplate) {
-        if (redisTemplate != null) {
-            this.redisTemplate = redisTemplate;
-            this.valueOperations = redisTemplate.opsForValue();
-        } else {
-            this.redisTemplate = null;
-            this.valueOperations = null;
-        }
+	if (redisTemplate != null) {
+	    this.redisTemplate = redisTemplate;
+	    this.valueOperations = redisTemplate.opsForValue();
+	} else {
+	    this.redisTemplate = null;
+	    this.valueOperations = null;
+	}
     }
 
     public abstract void setValue(String key, Object value);

@@ -1,4 +1,4 @@
-package com.dev.fullmooney.domain;
+package com.dev.log.domain;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Getter;
